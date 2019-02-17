@@ -1,15 +1,18 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <string>
 #include <iomanip>
 #include <algorithm>
 #include<random>
 
+#define data "studentai.txt"
 
 using std::string;
 using std::cin;
 using std::cout;
 using std::endl;
+
 
 struct studentas {
     string vardas, pavarde;
@@ -18,7 +21,7 @@ struct studentas {
     std::vector<int > nd;
 };
 
-double mediana(std::vector<studentas >& stud, int x, int y){
+double mediana(std::vector<studentas > stud, int x, int y){
     double med;
     sort(stud[x].nd.begin(), stud[x].nd.end());
     if (y % 2 == 0)
@@ -40,11 +43,12 @@ bool netinkamasPav(const string a){
     }
 }
 
-void generate( std::vector<studentas >& stud){
+void generate( std::vector<studentas >& stud, int &ilgVar, int &ilgPav ){
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<int> random(1, 10);
     double vid;
+    double sum = 0;
     int i = 0;
     int st = 0;
    while(true){
@@ -52,7 +56,6 @@ void generate( std::vector<studentas >& stud){
        cin >> st;
        if (st==1){
            stud.push_back(studentas());
-           double sum = 0;
            int k=0;
            int q=1;
            int f;
@@ -73,6 +76,8 @@ void generate( std::vector<studentas >& stud){
                cin.ignore(256, '\n');
                cin >> stud[i].pavarde;
            }
+           if(stud[i].vardas.length()>ilgVar) ilgVar = stud[i].vardas.length();
+           if(stud[i].pavarde.length()>ilgPav) ilgPav = stud[i].pavarde.length();
 
            cout << "Jei norite ivseti studento egzamino pazymi ranka, spauskite 1, jei norite ji atsitiktinai sugeneruoti, spauskite 0" << endl;
            cin >> f;
@@ -85,7 +90,7 @@ void generate( std::vector<studentas >& stud){
                    int eg = 0;
                    cout << "Iveskite egzamino rezultata" << endl;
                    cin >> eg;
-                   if( eg>= 0 && eg <= 10){
+                   if( !cin.fail() && eg>= 0 && eg <= 10){
                        if(q!=0) {
                            stud[i].egzaminas = eg;
                            break;
@@ -93,6 +98,8 @@ void generate( std::vector<studentas >& stud){
                    }
                    else {
                        cout << "Netinkamas pazymys, iveskite kita" << endl;
+                       cin.clear();
+                       cin.ignore(256, '\n');
                        continue;
                    }
                }
@@ -111,7 +118,7 @@ void generate( std::vector<studentas >& stud){
                while(q!=0){
                    cout << "Iveskite namu darbu pazymi " << endl;
                    cin >> q;
-                   if(q >= 0 && q <= 10){
+                   if(!cin.fail() && q >= 0 && q <= 10){
                        if(q!=0) {
                            stud[i].nd.push_back(q);
                            k++;
@@ -119,6 +126,8 @@ void generate( std::vector<studentas >& stud){
                    }
                    else {
                        cout << "Netinkamas pazymys, iveskite kita" << endl;
+                       cin.clear();
+                       cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                        continue;
                    }
                }
@@ -151,20 +160,108 @@ void generate( std::vector<studentas >& stud){
     }
 };
 
+void failoSkaitymas(std::vector<studentas > &stud, int &ilgVar, int &ilgPav){
+    std::ifstream df (data);
 
-void isvedimas( std::vector<studentas > stud){
-    cout << "Vardas     Pavarde             Galutiis(vid.)    Galutinis(med.)" << endl;
-    cout << "----------------------------------------------------------------" << endl;
+    int i=0;
+    int sk=0;
+    stud.push_back(studentas());
+    while(true){
+        if(df.eof()==1) break;
+
+        df >> stud[i].vardas;
+        if(!netinkamasPav(stud[i].vardas)) {
+            df.clear();
+            df.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+        df >> stud[i].pavarde;
+        if(!netinkamasPav(stud[i].pavarde)) {
+            df.clear();
+            df.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+        df >> sk;
+        if(df.fail()){
+            df.clear();
+            df.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        if(stud[i].vardas.length()>ilgVar) ilgVar = stud[i].vardas.length();
+        if(stud[i].pavarde.length()>ilgPav) ilgPav = stud[i].pavarde.length();
+
+        int q=0;
+        bool fail = false;
+        for(int j = 0; j < sk; j++){
+            df >> q;
+            if(!df.fail() && q > 0 && q <= 10){
+                    stud[i].nd.push_back(q);
+            }
+            else {
+                df.clear();
+                df.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                fail = true;
+                break;
+            }
+        }
+        if(fail) {
+            continue;
+        }
+
+        df >> q;
+        if(!df.fail() && q > 0 && q <= 10){
+            stud[i].egzaminas = q;
+        }
+        else {
+            df.clear();
+            df.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        double sum = 0;
+        double vid = 0;
+        for(int z = 0; z < sk ; z++) {
+            sum +=  stud[i].nd[z];
+        }
+        vid = sum/sk;
+        stud[i].vidGalutinis =  0.4 * vid + 0.6 * stud[i].egzaminas;
+        stud[i].medGalutinis =  0.4 * mediana(stud,i,sk) + 0.6 * stud[i].egzaminas;
+
+        i++;
+        if(df.eof()==1) break;
+        stud.push_back(studentas());
+    }
+};
+
+void rikiavimas(std::vector<studentas>& stud) {
+    sort(stud.begin(), stud.end(), [](const studentas &lhs, const studentas &rhs) {
+        if (lhs.vardas != rhs.vardas) {
+            return lhs.vardas < rhs.vardas;
+        } else {
+            return lhs.pavarde < rhs.pavarde;
+        }
+    });
+};
+
+void isvedimas( std::vector<studentas > stud, int ilgVar, int ilgPav){
+    rikiavimas(stud);
+    cout << std::left << std::setw(ilgVar + 3) << "vardas";
+    cout << std::setw(ilgPav + 3) << "Pavarde" << std::setw(10) << "Galutiis(vid.)   " << std::setw(10) << "Galutiis(med.)" << endl;
+    for(int w=0;w<(ilgVar+ilgPav+6+31);w++) cout << "-";cout <<endl;
     for(int i = 0; i < stud.size(); i++){
-        cout << std::left <<  std::setw(11) << stud[i].vardas << std::setw(19) << stud[i].pavarde << "  ";
-        cout << std::setw(6) << std::fixed << std::setprecision(2) << stud[i].vidGalutinis << "             ";
-        cout << std::setw(12) << std::fixed << std::setprecision(2) << stud[i].medGalutinis << endl;
+        cout << std::left <<  std::setw(ilgVar+3) << stud[i].vardas << std::setw(ilgPav+3) << stud[i].pavarde
+        << std::setw(17) << std::fixed << std::setprecision(2) << stud[i].vidGalutinis
+        << std::setw(10) << std::fixed << std::setprecision(2) << stud[i].medGalutinis << endl;
     }
 };
 
 int main() {
     std::vector<studentas > stud;
-    generate(stud);
-    isvedimas(stud);
+    int ilgVar = 0;
+    int ilgPav = 0;
+    failoSkaitymas(stud,ilgVar,ilgPav);
+    //generate(stud,ilgVar,ilgPav);
+    isvedimas(stud,ilgVar,ilgPav);
     return 0;
 }
