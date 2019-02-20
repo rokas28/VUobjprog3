@@ -12,7 +12,6 @@ using std::string;
 using std::cin;
 using std::cout;
 using std::endl;
-using std::cerr;
 
 #define data "studentai.txt"
 
@@ -199,7 +198,7 @@ void stringTikrinimas (std::ifstream &df, string a, bool &fail, int eil){
         df.clear();
         df.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         fail = true;
-        cout << "Ivestas netinkamas vardas arba pavarde " << eil << " eiluteje." << endl;
+        cout << "Ivestas netinkamas vardas arba pavarde " << eil << " eiluteje. Del to studento duomenys nebuvo nuskaityti. " << endl;
     }
  }
 
@@ -214,7 +213,7 @@ void nd(std::ifstream &df,std::vector<studentas> &stud, int x, int y, bool &fail
             df.clear();
             df.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             fail = true;
-            cout << "Ivestas netinkamas namu darbu pazymys " << eil << " eiluteje." << endl;
+            cout << "Ivestas netinkamas namu darbu pazymys " << eil << " eiluteje. Del to studento duomenys nebuvo nuskaityti." << endl;
             break;
         }
     }
@@ -230,7 +229,7 @@ void egz(std::ifstream &df,std::vector<studentas> &stud, int y, bool &fail, int 
         df.clear();
         df.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         fail = true;
-        cout << "Ivestas netinkamas egzamino pazymys " << eil << " eiluteje." << endl;
+        cout << "Ivestas netinkamas egzamino pazymys " << eil << " eiluteje. Del to studento duomenys nebuvo nuskaityti." << endl;
     }
 }
 
@@ -301,9 +300,9 @@ void isvedimas( std::vector<studentas> stud, int ilgVar, int ilgPav){
     cout << std::setw(ilgPav + 3) << "Pavarde" << std::setw(10) << "Galutiis(vid.)   " << std::setw(10) << "Galutiis(med.)" << endl;
     for(int w=0;w<(ilgVar+ilgPav+6+31);w++) cout << "-";cout <<endl;
     for (auto &i : stud) {
-        cout << std::left <<  std::setw(ilgVar+3) << i.vardas << std::setw(ilgPav+3) << i.pavarde
-        << std::setw(17) << std::fixed << std::setprecision(2) << i.vidGalutinis
-        << std::setw(10) << std::fixed << std::setprecision(2) << i.medGalutinis << endl;
+        cout << std::left <<  std::setw(ilgVar+3) << i.vardas << std::setw(ilgPav+3) << i.pavarde;
+        cout << std::setw(17) << std::fixed << std::setprecision(2) << i.vidGalutinis;
+        cout << std::setw(10) << std::fixed << std::setprecision(2) << i.medGalutinis << endl;
     }
 };
 
