@@ -1,3 +1,5 @@
+#include <utility>
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -6,12 +8,12 @@
 #include <algorithm>
 #include<random>
 
-#define data "studentai.txt"
-
 using std::string;
 using std::cin;
 using std::cout;
 using std::endl;
+
+#define data "studentai.txt"
 
 struct studentas {
     string vardas, pavarde;
@@ -165,6 +167,7 @@ void ndIvedimas(std::vector<studentas>& stud, int y, int f){
 void generate( std::vector<studentas>& stud, int &ilgVar, int &ilgPav ){
     int i = 0;
     int st = 0;
+    stud.reserve(1000);
     while(true){
        cout << "Jei norite prideti studenta spauskite 1" << endl;
        cin >> st;
@@ -187,56 +190,57 @@ void generate( std::vector<studentas>& stud, int &ilgVar, int &ilgPav ){
        }
        else break;
     }
+    stud.shrink_to_fit();
 };
 
- void stringTikrinimas (std::ifstream &df, const string a, bool &fail){
-     if(!netinkamasPav(a)) {
-         df.clear();
-         df.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-         fail = true;
-     }
+void stringTikrinimas (std::ifstream &df, string a, bool &fail){
+    if(!netinkamasPav(std::move(a))) {
+        df.clear();
+        df.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        fail = true;
+    }
  }
 
- void skTikrinimas(std::ifstream &df, bool &fail){
-     if(df.fail()){
-         df.clear();
-         df.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-         fail = true;
-     }
+void skTikrinimas(std::ifstream &df, bool &fail){
+    if(df.fail()){
+        df.clear();
+        df.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        fail = true;
+    }
  }
 
- void nd(std::ifstream &df,std::vector<studentas> &stud, int x, int y, bool &fail){
-     int q=0;
-     for(int j = 0; j < x; j++){
-         df >> q;
-         if(!df.fail() && q > 0 && q <= 10){
-             stud[y].nd.push_back(q);
-         }
-         else {
-             df.clear();
-             df.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-             fail = true;
-             break;
-         }
-     }
- }
+void nd(std::ifstream &df,std::vector<studentas> &stud, int x, int y, bool &fail){
+    int q=0;
+    for(int j = 0; j < x; j++){
+        df >> q;
+        if(!df.fail() && q > 0 && q <= 10){
+            stud[y].nd.push_back(q);
+        }
+        else {
+            df.clear();
+            df.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            fail = true;
+            break;
+        }
+    }
+}
 
- void egz(std::ifstream &df,std::vector<studentas> &stud, int y, bool &fail){
-     int q=0;
-     df >> q;
-     if(!df.fail() && q > 0 && q <= 10){
-         stud[y].egzaminas = q;
-     }
-     else {
-         df.clear();
-         df.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-         fail = true;
-     }
- }
+void egz(std::ifstream &df,std::vector<studentas> &stud, int y, bool &fail){
+    int q=0;
+    df >> q;
+    if(!df.fail() && q > 0 && q <= 10){
+        stud[y].egzaminas = q;
+    }
+    else {
+        df.clear();
+        df.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        fail = true;
+    }
+}
 
 void failoSkaitymas(std::vector<studentas> &stud, int &ilgVar, int &ilgPav){
     std::ifstream df (data);
-
+    stud.reserve(1000);
     int i=0;
     int sk=0;
     stud.emplace_back(studentas());
@@ -270,6 +274,7 @@ void failoSkaitymas(std::vector<studentas> &stud, int &ilgVar, int &ilgPav){
         if(df.eof()==1) break;
         stud.emplace_back(studentas());
     }
+    stud.shrink_to_fit();
 };
 
 void rikiavimas(std::vector<studentas>& stud) {
