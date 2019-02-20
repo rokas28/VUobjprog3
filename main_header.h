@@ -1,7 +1,3 @@
-//
-// Created by HP on 2019-02-20.
-//
-
 #ifndef UNTITLED_MAIN_HEADER_H
 #define UNTITLED_MAIN_HEADER_H
 
