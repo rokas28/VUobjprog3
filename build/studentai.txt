@@ -1,10 +1,13 @@
-tomas tomavicius 5 4 2 7 7 5 5
-jonas jonaitis g 5 9 9
-petras petraitis 5 4 8 7 9 5 5
-juozas juozaitis 2 9 k 4
-zigmas zigmaitis 7 5 22 4 9 8 9 8 9
-kos2as kostaitis 5 9 8 5 4 6 8
-tomas tomaitis 8 5 1 8 7 4 5 3 6 95
-darius dara;tis 2 5 5 8
-linas linaitis 2 9 6 y
-martynas martynaitis 5 4 5 8 8 5 8
+Vardas      Pavarde     ND1 ND2 ND3 ND4 ND5 ND6 Egzaminas
+tomas       tomavicius  4   4   2   7   7   8   5
+jonas       jonaitis    g   5   9   9   7   8   6
+petras      petraitis   5   4   8   7   9   7   5
+juozas      juozaitis   2   9   k   4   5   9   9
+zigmas      zigmaitis   7   5   22  4   9   5   8
+jonas       jonavicius  8   8   4   8   8   8   g
+kos2as      kostaitis   5   9   8   5   4   4   6
+tomas       tomaitis    5   5   1   8   7   5   295
+darius      dara;tis    2   5   5   8   5   4   8
+linas       linaitis    4   9   6   y   4   9   9
+martynas    martynait   4   4   5   8   8   8   9
+rokas       tam         8   9   8   9   8   7   10
