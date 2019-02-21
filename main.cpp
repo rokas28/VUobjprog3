@@ -157,8 +157,18 @@ void ndIvedimas(std::vector<studentas>& stud, int y, int f){
     }
     else if(f==0){
         cout << "Iveskite kiek namu darbu pazymiu norite sugeneruoti" << endl;
-        int n;
-        cin >> n;
+        int n = 0;
+        while(true) {
+            cin >> n;
+            if (!cin.fail() && n != 0) {
+                break;
+            } else {
+                cout << "Ivestas blogas simbolis, iveskite skaiciu" << endl;
+                cin.clear();
+                cin.ignore(256, '\n');
+                continue;
+            }
+        }
         ndGen(stud,n,y);
         galutinis(stud,n,y);
     }
@@ -169,7 +179,7 @@ void generate( std::vector<studentas>& stud, int &ilgVar, int &ilgPav ){
     int st = 0;
     stud.reserve(100);
     while(true){
-       cout << "Jei norite prideti studenta spauskite 1" << endl;
+       cout << "Jei norite prideti studenta spauskite 1, jei norite uzbaigti, spauskite 0" << endl;
        cin >> st;
        if (st==1){
            stud.emplace_back(studentas());
