@@ -25,8 +25,11 @@ void stringTikrinimas (std::ifstream &df, string a, bool &fail, int eil);
 void nd(std::ifstream &df,std::vector<studentas> &stud, int x, int y, bool &fail, int eil);
 void egz(std::ifstream &df,std::vector<studentas> &stud, int y, bool &fail, int eil);
 int ndSk(std::ifstream &df);
-void failoSkaitymas(std::vector<studentas> &stud, int &ilgVar, int &ilgPav);
+void fileGenerate(int x);
+void failoSkaitymas(std::vector<studentas> &stud, int &ilgVar, int &ilgPav, int N);
 void rikiavimas(std::vector<studentas>& stud);
-void isvedimas( std::vector<studentas> stud, int ilgVar, int ilgPav);
+void rusiavimas(std::vector<studentas>& stud);
+void skirstymas(std::vector<studentas>& stud, std::vector<studentas>& vargsiukai, int x);
+void isvedimas( std::vector<studentas> stud, std::vector<studentas> vargsiukai, int ilgVar, int ilgPav);
 
 #endif //UNTITLED_STRUCT_HEADER_H

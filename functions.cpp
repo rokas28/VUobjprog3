@@ -234,10 +234,29 @@ int ndSk(std::ifstream &df){
     return n;
 }
 
-void failoSkaitymas(std::vector<studentas> &stud, int &ilgVar, int &ilgPav){
+void fileGenerate(int x) {
+    std::ofstream gf(data);
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> random(1, 10);
+    int a;
+    int b;
+    gf << "Vardas      Pavarde     ND1 ND2 ND3 ND4 ND5 ND6 Egzaminas" << endl;
+    for (int i = 1; i <= x; i++) {
+        gf << "Vardas" << i << "     Pavarde" << i << "  ";
+        for (int j = 0; j < 6; j++) {
+            a = random(gen);
+            gf << "  " << a;
+        }
+        b = random(gen);
+        gf << "   " << b << endl;
+    }
+}
+
+void failoSkaitymas(std::vector<studentas> &stud, int &ilgVar, int &ilgPav, int N){
     std::ifstream df (data);
     if (!df) throw "Duomenu failas nerastas";
-    stud.reserve(100);
+    stud.reserve(N);
     int i=0;
     int eil=0;
     int n = ndSk(df);
@@ -248,11 +267,11 @@ void failoSkaitymas(std::vector<studentas> &stud, int &ilgVar, int &ilgPav){
         eil++;
 
         df >> stud[i].vardas;
-        stringTikrinimas(df, stud[i].vardas,fail,eil);
+        //stringTikrinimas(df, stud[i].vardas,fail,eil);
         if(fail)continue;
 
         df >> stud[i].pavarde;
-        stringTikrinimas(df, stud[i].pavarde,fail,eil);
+        //stringTikrinimas(df, stud[i].pavarde,fail,eil);
         if(fail)continue;
 
         if(stud[i].vardas.length()>ilgVar) ilgVar = stud[i].vardas.length();
@@ -272,7 +291,8 @@ void failoSkaitymas(std::vector<studentas> &stud, int &ilgVar, int &ilgPav){
     stud.shrink_to_fit();
 };
 
-void rikiavimas(std::vector<studentas>& stud) {
+
+/*void rikiavimas(std::vector<studentas>& stud) {
     sort(stud.begin(), stud.end(), [](const studentas &lhs, const studentas &rhs) {
         if (lhs.vardas != rhs.vardas) {
             return lhs.vardas < rhs.vardas;
@@ -280,17 +300,44 @@ void rikiavimas(std::vector<studentas>& stud) {
             return lhs.pavarde < rhs.pavarde;
         }
     });
+};*/
+
+void rusiavimas(std::vector<studentas>& stud) {
+    sort(stud.begin(), stud.end(), [](const studentas &lhs, const studentas &rhs) {
+        return ( lhs.vidGalutinis > rhs.vidGalutinis );
+    });
 };
 
-void isvedimas( std::vector<studentas> stud, int ilgVar, int ilgPav){
-    rikiavimas(stud);
-    cout << endl;
-    cout << std::left << std::setw(ilgVar + 3) << "vardas";
-    cout << std::setw(ilgPav + 3) << "Pavarde" << std::setw(10) << "Galutiis(vid.)   " << std::setw(10) << "Galutiis(med.)" << endl;
-    for(int w=0;w<(ilgVar+ilgPav+6+31);w++) cout << "-";cout <<endl;
+void skirstymas(std::vector<studentas>& stud, std::vector<studentas>& vargsiukai, int x){
+    rusiavimas(stud);
+    int i = x;
+    int k =0;
+    while(stud[i].vidGalutinis < 5){
+        k++;
+        i--;
+    }
+    std::move(stud.end()-k, stud.end(),std::back_inserter(vargsiukai));
+    stud.erase (stud.end()-k, stud.end());
+}
+
+void isvedimas( std::vector<studentas> stud, std::vector<studentas> vargsiukai, int ilgVar, int ilgPav){
+    //rikiavimas(stud);
+    std::ofstream gs ("galvociai.txt");
+    std::ofstream bs ("vargsiukai.txt");
+
+    gs << std::left << std::setw(ilgVar + 3) << "vardas";
+    gs << std::setw(ilgPav + 3) << "Pavarde" << std::setw(10) << "Galutiis(vid.)   "  << endl;
+    for(int w=0;w<(ilgVar+ilgPav+6+14);w++) gs << "-";gs <<endl;
     for (auto &i : stud) {
-        cout << std::left <<  std::setw(ilgVar+3) << i.vardas << std::setw(ilgPav+3) << i.pavarde;
-        cout << std::setw(17) << std::fixed << std::setprecision(2) << i.vidGalutinis;
-        cout << std::setw(10) << std::fixed << std::setprecision(2) << i.medGalutinis << endl;
+        gs << std::left <<  std::setw(ilgVar+3) << i.vardas << std::setw(ilgPav+3) << i.pavarde;
+        gs << std::setw(17) << std::fixed << std::setprecision(2) << i.vidGalutinis << endl;
+    }
+    bs << std::left << std::setw(ilgVar + 3) << "vardas";
+    bs << std::setw(ilgPav + 3) << "Pavarde" << std::setw(10) << "Galutiis(vid.)   " << endl;
+    for(int w=0;w<(ilgVar+ilgPav+6+14);w++) bs << "-";bs <<endl;
+    for (auto &i : vargsiukai) {
+        bs << std::left <<  std::setw(ilgVar+3) << i.vardas << std::setw(ilgPav+3) << i.pavarde;
+        bs << std::setw(17) << std::fixed << std::setprecision(2) << i.vidGalutinis << endl;
+
     }
 };
