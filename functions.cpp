@@ -241,16 +241,17 @@ void fileGenerate(int x) {
     std::uniform_int_distribution<int> random(1, 10);
     int a;
     int b;
-    gf << "Vardas      Pavarde     ND1 ND2 ND3 ND4 ND5 ND6 Egzaminas" << endl;
+    gf << std::left << std::setw(14) << "Vardas" << std::setw(15) << "Pavarde" <<  "ND1 ND2 ND3 ND4 ND5 ND6 Egzaminas" << endl;
     for (int i = 1; i <= x; i++) {
-        gf << "Vardas" << i << "     Pavarde" << i << "  ";
+        gf <<  "Vardas" << std::setw(8) << i << "Pavarde" << std::setw(8) <<  i;
         for (int j = 0; j < 6; j++) {
             a = random(gen);
-            gf << "  " << a;
+            gf << std::setw(4) << a ;
         }
         b = random(gen);
-        gf << "   " << b << endl;
+        gf << b << endl;
     }
+    gf.close();
 }
 
 void failoSkaitymas(std::vector<studentas> &stud, int &ilgVar, int &ilgPav, int N){
@@ -267,6 +268,7 @@ void failoSkaitymas(std::vector<studentas> &stud, int &ilgVar, int &ilgPav, int 
         eil++;
 
         df >> stud[i].vardas;
+        if(stud[i].vardas.empty())break;
         //stringTikrinimas(df, stud[i].vardas,fail,eil);
         if(fail)continue;
 
@@ -332,12 +334,13 @@ void isvedimas( std::vector<studentas> stud, std::vector<studentas> vargsiukai, 
         gs << std::left <<  std::setw(ilgVar+3) << i.vardas << std::setw(ilgPav+3) << i.pavarde;
         gs << std::setw(17) << std::fixed << std::setprecision(2) << i.vidGalutinis << endl;
     }
+    gs.close();
     bs << std::left << std::setw(ilgVar + 3) << "vardas";
     bs << std::setw(ilgPav + 3) << "Pavarde" << std::setw(10) << "Galutiis(vid.)   " << endl;
     for(int w=0;w<(ilgVar+ilgPav+6+14);w++) bs << "-";bs <<endl;
     for (auto &i : vargsiukai) {
         bs << std::left <<  std::setw(ilgVar+3) << i.vardas << std::setw(ilgPav+3) << i.pavarde;
         bs << std::setw(17) << std::fixed << std::setprecision(2) << i.vidGalutinis << endl;
-
     }
+    bs.close();
 };
