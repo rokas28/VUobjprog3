@@ -8,7 +8,7 @@ int main() {
     int ilgVar = 0;
     int ilgPav = 0;
     bool err = false;
-    static const int N = 1000;
+    static const int N = 100000;
 
 
     auto start1 = std::chrono::high_resolution_clock::now();
