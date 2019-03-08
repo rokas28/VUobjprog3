@@ -1,57 +1,59 @@
-#include "main_header.h"
-#include "struct_header.h"
-#include "list_header.h"
+#include "../headers/main_header.h"
+#include "../headers/struct_header.h"
+#include "../headers/deque_header.h"
 
-void failoSkaitymas(std::list<studentas> &stud, int &ilgVar, int &ilgPav){
-    std::list<studentas>::iterator it;
+void failoSkaitymas(std::deque<studentas> &stud, int &ilgVar, int &ilgPav){
     std::ifstream df (data);
     if (!df) throw "Duomenu failas nerastas";
     int i=0;
     int eil=0;
     int n = ndSk(df);
     stud.emplace_back(studentas());
-    it = stud.begin();
-    int a=0;
     while(true) {
+
         if (df.eof() == 1) break;
         eil++;
-        df >> it->vardas >> it->pavarde;
-        if (it->vardas.length() > ilgVar) ilgVar = it->vardas.length();
-        if (it->pavarde.length() > ilgPav) ilgPav = it->pavarde.length();
+        df >> stud[i].vardas >> stud[i].pavarde;
+        if (stud[i].vardas.length() > ilgVar) ilgVar = stud[i].vardas.length();
+        if (stud[i].pavarde.length() > ilgPav) ilgPav = stud[i].pavarde.length();
         int q;
         int sum=0;
         for(int u=0;u<6;u++){
             df >> q;
-            it->nd.emplace_back(q);
+            stud[i].nd.emplace_back(q);
             sum = sum + q;
         }
-        df >> it->egzaminas;
-        it->vidGalutinis =  0.4 * sum/n + 0.6 * it->egzaminas;
-        if(it->vidGalutinis>=5)a++;
+        df >> stud[i].egzaminas;
+        stud[i].vidGalutinis =  0.4 * sum/n + 0.6 * stud[i].egzaminas;
         if (df.eof() == 1) break;
         i++;
         stud.emplace_back(studentas());
-        it++;
     }
+
+    df.seekg(0);
+    df.clear();
+    stud.shrink_to_fit();
 };
 
-void rusiavimas(std::list<studentas>& stud) {
-    stud.sort([](const studentas &lhs, const studentas &rhs) {
+void rusiavimas(std::deque<studentas>& stud) {
+    sort(stud.begin(), stud.end(), [](const studentas &lhs, const studentas &rhs) {
         return ( lhs.vidGalutinis > rhs.vidGalutinis );
     });
 };
 
-void skirstymas(std::list<studentas>& stud, std::list<studentas>& vargsiukai){
+void skirstymas(std::deque<studentas>& stud, std::deque<studentas>& vargsiukai, int x){
     rusiavimas(stud);
-    std::list<studentas>::iterator it;
-    it = stud.begin();
-    for(auto l : stud){
-        if(l.vidGalutinis >= 5) it++;
+    int i = x;
+    int k =0;
+    while(stud[i].vidGalutinis < 5){
+        k++;
+        i--;
     }
-    vargsiukai.splice(vargsiukai.begin(), stud, it, stud.end() );
+    std::move(stud.end()-k, stud.end(),std::back_inserter(vargsiukai));
+    stud.erase (stud.end()-k, stud.end());
 }
 
-void isvedimas( std::list<studentas> stud, std::list<studentas> vargsiukai, int ilgVar, int ilgPav){
+void isvedimas( std::deque<studentas> stud, std::deque<studentas> vargsiukai, int ilgVar, int ilgPav){
     std::ofstream gs ("galvociai.txt");
     std::ofstream bs ("vargsiukai.txt");
 

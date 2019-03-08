@@ -1,9 +1,10 @@
-#include "main_header.h"
-#include "struct_header.h"
-#include "list_header.h"
-#include "deque_header.h"
+#include "headers/main_header.h"
+#include "headers/struct_header.h"
+#include "headers/list_header.h"
+#include "headers/deque_header.h"
 
 int main() {
+    
     std::vector<studentas> stud;
     std::vector<studentas> vargsiukai;
     std::list<studentas> studl;
@@ -14,7 +15,7 @@ int main() {
     int ilgVar = 0;
     int ilgPav = 0;
     bool err = false;
-    static const int N = 10;
+    static const int N = 1000;
 
     auto start1 = std::chrono::high_resolution_clock::now();
     fileGenerate(N);

@@ -1,5 +1,5 @@
-#include "main_header.h"
-#include "struct_header.h"
+#include "../headers/main_header.h"
+#include "../headers/struct_header.h"
 
     double mediana(std::vector<studentas> stud, int x, int y){
         double med;
