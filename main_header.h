@@ -8,8 +8,10 @@
 #include <string>
 #include <iomanip>
 #include <algorithm>
-#include<random>
+#include <random>
 #include <chrono>
+#include <list>
+#include <deque>
 
 using std::string;
 using std::cin;
