@@ -211,3 +211,11 @@
         }
     bs.close();
 };
+
+void start_c(std::chrono::time_point<std::chrono::high_resolution_clock> &start) {
+    start = std::chrono::high_resolution_clock::now();
+}
+
+void end_c(std::chrono::time_point<std::chrono::high_resolution_clock> &end) {
+    end = std::chrono::high_resolution_clock::now();
+}

@@ -31,5 +31,7 @@ void rikiavimas(std::vector<studentas>& stud);
 void rusiavimas(std::vector<studentas>& stud);
 void skirstymas(std::vector<studentas>& stud, std::vector<studentas>& vargsiukai, int x);
 void isvedimas( std::vector<studentas> stud, std::vector<studentas> vargsiukai, int ilgVar, int ilgPav);
+void start_c(std::chrono::time_point<std::chrono::high_resolution_clock> &start);
+void end_c(std::chrono::time_point<std::chrono::high_resolution_clock> &end);
 
 #endif //UNTITLED_STRUCT_HEADER_H

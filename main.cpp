@@ -4,7 +4,7 @@
 #include "headers/deque_header.h"
 
 int main() {
-    
+
     std::vector<studentas> stud;
     std::vector<studentas> vargsiukai;
     std::list<studentas> studl;
@@ -12,15 +12,18 @@ int main() {
     std::deque<studentas> studd;
     std::deque<studentas> vargsiukaid;
 
+    std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
+    std::chrono::duration<float> duration;
+
     int ilgVar = 0;
     int ilgPav = 0;
     bool err = false;
     static const int N = 1000;
 
-    auto start1 = std::chrono::high_resolution_clock::now();
+    start_c(start);
     fileGenerate(N);
     auto end1 = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> time1 = end1-start1;
+    std::chrono::duration<double> time1 = end1-start;
     cout << "Failo generavimas uztruko " << time1.count() << "sec" << endl << endl;
     auto start2 = std::chrono::high_resolution_clock::now();
     try {
