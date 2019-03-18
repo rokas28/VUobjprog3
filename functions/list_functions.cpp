@@ -51,6 +51,17 @@ void skirstymas(std::list<studentas>& stud, std::list<studentas>& vargsiukai){
     vargsiukai.splice(vargsiukai.begin(), stud, it, stud.end() );
 }
 
+void skirstymas2(std::list<studentas>& stud, std::list<studentas>& vargsiukai, std::list<studentas>& galvociai){
+    rusiavimas(stud);
+    std::list<studentas>::iterator it;
+    it = stud.begin();
+    for(auto l : stud){
+        if(l.vidGalutinis >= 5) it++;
+    }
+    galvociai.splice(galvociai.begin(), stud, stud.begin(), it);
+    vargsiukai.splice(vargsiukai.begin(), stud, it, stud.end());
+}
+
 void isvedimas( std::list<studentas> stud, std::list<studentas> vargsiukai, int ilgVar, int ilgPav){
     std::ofstream gs ("galvociai.txt");
     std::ofstream bs ("vargsiukai.txt");

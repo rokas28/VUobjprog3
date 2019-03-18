@@ -52,6 +52,17 @@ void skirstymas(std::deque<studentas>& stud, std::deque<studentas>& vargsiukai, 
     std::move(stud.end()-k, stud.end(),std::back_inserter(vargsiukai));
     stud.erase (stud.end()-k, stud.end());
 }
+void skirstymas2(std::deque<studentas>& stud, std::deque<studentas>& vargsiukai, std::deque<studentas>& galvociai, int x){
+    rusiavimas(stud);
+    int i = x;
+    int k =0;
+    while(stud[i].vidGalutinis < 5){
+        k++;
+        i--;
+    }
+    std::move(stud.begin(), stud.end()-k-2, std::back_inserter(galvociai));
+    std::move(stud.end()-k, stud.end(),std::back_inserter(vargsiukai));
+}
 
 void isvedimas( std::deque<studentas> stud, std::deque<studentas> vargsiukai, int ilgVar, int ilgPav){
     std::ofstream gs ("galvociai.txt");

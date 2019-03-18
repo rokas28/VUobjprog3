@@ -161,15 +161,15 @@
         stud.shrink_to_fit();
     };
 
-/*void rikiavimas(std::vector<studentas>& stud) {
-    sort(stud.begin(), stud.end(), [](const studentas &lhs, const studentas &rhs) {
-        if (lhs.vardas != rhs.vardas) {
-            return lhs.vardas < rhs.vardas;
-        } else {
-            return lhs.pavarde < rhs.pavarde;
-        }
-    });
-};*/
+    /*void rikiavimas(std::vector<studentas>& stud) {
+        sort(stud.begin(), stud.end(), [](const studentas &lhs, const studentas &rhs) {
+            if (lhs.vardas != rhs.vardas) {
+                return lhs.vardas < rhs.vardas;
+            } else {
+                return lhs.pavarde < rhs.pavarde;
+            }
+        });
+    };*/
 
     void rusiavimas(std::vector<studentas>& stud) {
         sort(stud.begin(), stud.end(), [](const studentas &lhs, const studentas &rhs) {
@@ -187,6 +187,18 @@
         }
         std::move(stud.end()-k, stud.end(),std::back_inserter(vargsiukai));
         stud.erase (stud.end()-k, stud.end());
+    }
+
+    void skirstymas2(std::vector<studentas>& stud, std::vector<studentas>& vargsiukai, std::vector<studentas>& galvociai, int x){
+        rusiavimas(stud);
+        int i = x;
+        int k =0;
+        while(stud[i].vidGalutinis < 5){
+            k++;
+            i--;
+        }
+        std::move(stud.end()-k, stud.end(),std::back_inserter(vargsiukai));
+        std::move(stud.begin(), stud.end()-k-1, std::back_inserter(galvociai));
     }
 
     void isvedimas( std::vector<studentas> stud, std::vector<studentas> vargsiukai, int ilgVar, int ilgPav){
@@ -210,7 +222,7 @@
             bs << std::setw(17) << std::fixed << std::setprecision(2) << i.vidGalutinis << endl;
         }
     bs.close();
-};
+    };
 
 void start_c(std::chrono::time_point<std::chrono::high_resolution_clock> &start) {
     start = std::chrono::high_resolution_clock::now();
