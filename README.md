@@ -151,6 +151,7 @@ Deque išvedimas užtruko 1.76306sec
 ## [v1.0](https://github.com/rokas28/VUobjprog2/releases/tag/v1.0) (2019-03-18)
 
 ### Pridėta:
+- Galutinė programos versija.
 - Studentų skaidymas į du skirtingus konteinerius(1 strategija). Iki šiol programa buvo parašyta pagal antrą strategiją.
 - Pridėtos funkcijos leidžiančios programai skaičiuoti ir pagal 1 strategiją.
 
