@@ -151,7 +151,91 @@ Deque išvedimas užtruko 1.76306sec
 ## [v1.0](https://github.com/rokas28/VUobjprog2/releases/tag/v1.0) (2019-03-18)
 
 ### Pridėta:
--
+- Studentų skaidymas į du skirtingus konteinerius(1 strategija). Iki šiol programa buvo parašyta pagal antrą strategiją.
+- Pridėtos funkcijos leidžiančios programai skaičiuoti ir pagal 1 strategiją.
 
 ### Koreguota:
-- 
+- main.cpp failas, išimtas try cach blokas. 
+
+**Programos strategijų spartos matavimas:**  
+
+100 studentų:  
+```
+Vector skaitymas ir rušiavimas užtruko(2 strategija) 0.0165551sec
+Vector išvedimas užtruko(2 strategija) 0.045049sec
+
+List skaitymas ir rušiavimas užtruko(2 strategija) 0.00460472sec
+List išvedimas užtruko(2 strategija) 0.199337sec
+
+Deque skaitymas ir rušiavimas užtruko(2 strategija) 0.00627939sec
+Deque išvedimas užtruko(2 strategija) 0.00650626ec
+
+Vector skaitymas ir rušiavimas užtruko(1 strategija) 0.005888sec
+Vector išvedimas užtruko(1 strategija) 0.0423323sec
+
+List skaitymas ir rušiavimas užtruko(1 strategija) 0.00474954sec
+List išvedimas užtruko 0.0116903sec
+
+Deque skaitymas ir rušiavimas užtruko(1 strategija) 0.0053481sec
+Deque išvedimas užtruko(1 strategija) 0.00742318sec
+```
+1000 studentų:  
+```
+Vector skaitymas ir rušiavimas užtruko(2 strategija) 0.0601818sec
+Vector išvedimas užtruko(2 strategija) 0.034464sec
+
+List skaitymas ir rušiavimas užtruko(2 strategija) 0.0676041sec
+List išvedimas užtruko(2 strategija) 0.0525535sec
+
+Deque skaitymas ir rušiavimas užtruko(2 strategija) 0.076509sec
+Deque išvedimas užtruko(2 strategija) 0.0293518sec
+
+Vector skaitymas ir rušiavimas užtruko(1 strategija) 0.057504sec
+Vector išvedimas užtruko(1 strategija) 0.030295sec
+
+List skaitymas ir rušiavimas užtruko(1 strategija) 0.278572sec
+List išvedimas užtruko 0.606872sec
+
+Deque skaitymas ir rušiavimas užtruko(1 strategija) 0.0908632sec
+Deque išvedimas užtruko(1 strategija) 0.0391422sec
+```
+10000 studentų:  
+```
+Vector skaitymas ir rušiavimas užtruko(2 strategija) 0.865933sec
+Vector išvedimas užtruko(2 strategija) 0.385592sec
+
+List skaitymas ir rušiavimas užtruko(2 strategija) 0.501049sec
+List išvedimas užtruko(2 strategija) 0.217937sec
+
+Deque skaitymas ir rušiavimas užtruko(2 strategija) 0.574209sec
+Deque išvedimas užtruko(2 strategija) 0.209826sec
+
+Vector skaitymas ir rušiavimas užtruko(1 strategija) 0.586045sec
+Vector išvedimas užtruko(1 strategija) 0.207189sec
+
+List skaitymas ir rušiavimas užtruko(1 strategija) 0.501988sec
+List išvedimas užtruko 0.20867sec
+
+Deque skaitymas ir rušiavimas užtruko(1 strategija) 0.580188sec
+Deque išvedimas užtruko(1 strategija) 0.213235ec
+```
+100000 studentų:  
+```
+Vector skaitymas ir rušiavimas užtruko(2 strategija) 5.23413sec
+Vector išvedimas užtruko(2 strategija) 1.65535sec
+
+List skaitymas ir rušiavimas užtruko(2 strategija) 4.918sec
+List išvedimas užtruko(2 strategija) 1.81334sec
+
+Deque skaitymas ir rušiavimas užtruko(2 strategija) 5.32219sec
+Deque išvedimas užtruko(2 strategija) 1.76306sec
+
+Vector skaitymas ir rušiavimas užtruko(1 strategija) 5.40202sec
+Vector išvedimas užtruko(1 strategija) 2.38214sec
+
+List skaitymas ir rušiavimas užtruko(1 strategija) 4.96394sec
+List išvedimas užtruko 2.49297sec
+
+Deque skaitymas ir rušiavimas užtruko(1 strategija) 5.15912sec
+Deque išvedimas užtruko(1 strategija) 2.51084sec
+```
