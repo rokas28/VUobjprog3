@@ -156,7 +156,7 @@ Deque išvedimas užtruko 1.76306sec
 - Pridėtos funkcijos leidžiančios programai skaičiuoti ir pagal 1 strategiją.
 
 ### Koreguota:
-- main.cpp failas, išimtas try cach blokas. 
+- main.cpp faile išimtas try cach blokas. 
 
 **Programos strategijų spartos matavimas:**  
 
