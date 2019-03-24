@@ -149,7 +149,7 @@ Deque išvedimas užtruko 1.76306sec
 ```
 Galima matyti jog greičiausiai veikia list tipo duoenų konteineris. Vektoriaus ir deque spartos laikai yra panašūs ir svyruoja.
 
-## [v1.0](https://github.com/rokas28/VUobjprog2/releases/tag/v1.0) (2019-03-18)
+## [v1.0](https://github.com/rokas28/VUobjprog2/releases/tag/v1.0) (2019-03-24)
 
 ### Pridėta:
 - Galutinė programos versija.
@@ -259,4 +259,4 @@ Vector rusiavimas uztruko(su stable_partition) 0.437255sec
 ```
 Galima matyti, jog antra strategija, nors ir ne labai žymiai, bet yra greitesnė už pirmą strategiją.
 Duomenų konteinerių tipuose greičiausias yra list tipo konteineris.
-Naudojant stable_partition algoritmą vektoriaus greitis abai žymiai išauga ir tuomet stipriai lenkia kito tipo konteinerius.
+Naudojant `stable_partition` algoritmą vektoriaus greitis abai žymiai išauga ir tuomet stipriai lenkia kito tipo konteinerius.
