@@ -201,6 +201,19 @@
         std::move(stud.begin(), stud.end()-k-1, std::back_inserter(galvociai));
     }
 
+
+    bool negavoSkolos(const studentas& s){
+        return s.vidGalutinis > 5;
+    }
+
+    std::vector<studentas> vargsiukai(std::vector<studentas>& stud) {
+        std::vector<studentas>::iterator it =
+                stable_partition(stud.begin(), stud.end(), negavoSkolos);
+        std::vector<studentas> minksti(it, stud.end());
+        stud.erase(it, stud.end());
+        return minksti;
+    }
+
     void isvedimas( std::vector<studentas> stud, std::vector<studentas> vargsiukai, int ilgVar, int ilgPav){
         //rikiavimas(stud);
         std::ofstream gs ("galvociai.txt");

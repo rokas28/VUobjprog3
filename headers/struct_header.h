@@ -31,6 +31,8 @@ void rikiavimas(std::vector<studentas>& stud);
 void rusiavimas(std::vector<studentas>& stud);
 void skirstymas(std::vector<studentas>& stud, std::vector<studentas>& vargsiukai, int x);
 void skirstymas2(std::vector<studentas>& stud, std::vector<studentas>& vargsiukai, std::vector<studentas>& galvociai, int x);
+bool negavoSkolos(const studentas& s);
+std::vector<studentas> vargsiukai(std::vector<studentas>& stud);
 void isvedimas( std::vector<studentas> stud, std::vector<studentas> vargsiukai, int ilgVar, int ilgPav);
 void start_c(std::chrono::time_point<std::chrono::high_resolution_clock> &start);
 void end_c(std::chrono::time_point<std::chrono::high_resolution_clock> &end);

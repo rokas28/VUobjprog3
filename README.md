@@ -147,6 +147,7 @@ List išvedimas užtruko 1.81334sec
 Deque skaitymas ir rušiavimas užtruko 5.32219sec
 Deque išvedimas užtruko 1.76306sec
 ```
+Galima matyti jog greičiausiai veikia list tipo duoenų konteineris. Vektoriaus ir deque spartos laikai yra panašūs ir svyruoja.
 
 ## [v1.0](https://github.com/rokas28/VUobjprog2/releases/tag/v1.0) (2019-03-18)
 
@@ -162,81 +163,100 @@ Deque išvedimas užtruko 1.76306sec
 
 100 studentų:  
 ```
-Vector skaitymas ir rušiavimas užtruko(2 strategija) 0.0165551sec
-Vector išvedimas užtruko(2 strategija) 0.045049sec
+Failo generavimas uztruko 0.0166667sec
 
-List skaitymas ir rušiavimas užtruko(2 strategija) 0.00460472sec
-List išvedimas užtruko(2 strategija) 0.199337sec
+Vector rusiavimas uztruko(2 strategija) 0.00241723sec
+Vector isvedimas uztruko(2 strategija) 0.0145358sec
 
-Deque skaitymas ir rušiavimas užtruko(2 strategija) 0.00627939sec
-Deque išvedimas užtruko(2 strategija) 0.00650626ec
+List rusiavimas uztruko(2 strategija) 0.00143631sec
+List isvedimas uztruko(2 strategija) 0.0140246sec
 
-Vector skaitymas ir rušiavimas užtruko(1 strategija) 0.005888sec
-Vector išvedimas užtruko(1 strategija) 0.0423323sec
+Deque rusiavimas uztruko(2 strategija) 0.00395528sec
+Deque isvedimas uztruko(2 strategija) 0.00902195sec
 
-List skaitymas ir rušiavimas užtruko(1 strategija) 0.00474954sec
-List išvedimas užtruko 0.0116903sec
+Vector rusiavimas uztruko(1 strategija) 0.00382974sec
+Vector isvedimas uztruko(1 strategija) 0.0186023sec
 
-Deque skaitymas ir rušiavimas užtruko(1 strategija) 0.0053481sec
-Deque išvedimas užtruko(1 strategija) 0.00742318sec
+List rusiavimas uztruko(1 strategija) 0.00213456sec
+List isvedimas uztruko(1 strategija) 0.00867815sec
+
+Deque rusiavimas uztruko(1 strategija) 0.00159631sec
+Deque isvedimas uztruko(1 strategija) 0.0100094sec
+
+Vector rusiavimas uztruko(su stable_partition) 0.000461538sec
 ```
 1000 studentų:  
 ```
-Vector skaitymas ir rušiavimas užtruko(2 strategija) 0.0601818sec
-Vector išvedimas užtruko(2 strategija) 0.034464sec
+Failo generavimas uztruko 0.177447sec
 
-List skaitymas ir rušiavimas užtruko(2 strategija) 0.0676041sec
-List išvedimas užtruko(2 strategija) 0.0525535sec
+Vector rusiavimas uztruko(2 strategija) 0.0249243sec
+Vector isvedimas uztruko(2 strategija) 0.0423742sec
 
-Deque skaitymas ir rušiavimas užtruko(2 strategija) 0.076509sec
-Deque išvedimas užtruko(2 strategija) 0.0293518sec
+List rusiavimas uztruko(2 strategija) 0.0164697sec
+List isvedimas uztruko(2 strategija) 0.0392779sec
 
-Vector skaitymas ir rušiavimas užtruko(1 strategija) 0.057504sec
-Vector išvedimas užtruko(1 strategija) 0.030295sec
+Deque rusiavimas uztruko(2 strategija) 0.0321145sec
+Deque isvedimas uztruko(2 strategija) 0.0616213sec
 
-List skaitymas ir rušiavimas užtruko(1 strategija) 0.278572sec
-List išvedimas užtruko 0.606872sec
+Vector rusiavimas uztruko(1 strategija) 0.0471253sec
+Vector isvedimas uztruko(1 strategija) 0.0628135sec
 
-Deque skaitymas ir rušiavimas užtruko(1 strategija) 0.0908632sec
-Deque išvedimas užtruko(1 strategija) 0.0391422sec
+List rusiavimas uztruko(1 strategija) 0.0715524sec
+List isvedimas uztruko(1 strategija) 0.0503696sec
+
+Deque rusiavimas uztruko(1 strategija) 0.0344591sec
+Deque isvedimas uztruko(1 strategija) 0.0418158sec
+
+Vector rusiavimas uztruko(su stable_partition) 0.00460964sec
 ```
 10000 studentų:  
 ```
-Vector skaitymas ir rušiavimas užtruko(2 strategija) 0.865933sec
-Vector išvedimas užtruko(2 strategija) 0.385592sec
+Failo generavimas uztruko 0.706272sec
 
-List skaitymas ir rušiavimas užtruko(2 strategija) 0.501049sec
-List išvedimas užtruko(2 strategija) 0.217937sec
+Vector rusiavimas uztruko(2 strategija) 0.26133sec
+Vector isvedimas uztruko(2 strategija) 0.276337sec
 
-Deque skaitymas ir rušiavimas užtruko(2 strategija) 0.574209sec
-Deque išvedimas užtruko(2 strategija) 0.209826sec
+List rusiavimas uztruko(2 strategija) 0.173108sec
+List isvedimas uztruko(2 strategija) 0.271526sec
 
-Vector skaitymas ir rušiavimas užtruko(1 strategija) 0.586045sec
-Vector išvedimas užtruko(1 strategija) 0.207189sec
+Deque rusiavimas uztruko(2 strategija) 0.195009sec
+Deque isvedimas uztruko(2 strategija) 0.336301sec
 
-List skaitymas ir rušiavimas užtruko(1 strategija) 0.501988sec
-List išvedimas užtruko 0.20867sec
+Vector rusiavimas uztruko(1 strategija) 0.310294sec
+Vector isvedimas uztruko(1 strategija) 0.290751sec
 
-Deque skaitymas ir rušiavimas užtruko(1 strategija) 0.580188sec
-Deque išvedimas užtruko(1 strategija) 0.213235ec
+List rusiavimas uztruko(1 strategija) 0.167759sec
+List isvedimas uztruko(1 strategija) 0.360693sec
+
+Deque rusiavimas uztruko(1 strategija) 0.200047sec
+Deque isvedimas uztruko(1 strategija) 0.383927sec
+
+Vector rusiavimas uztruko(su stable_partition) 0.0388193sec
 ```
 100000 studentų:  
 ```
-Vector skaitymas ir rušiavimas užtruko(2 strategija) 5.23413sec
-Vector išvedimas užtruko(2 strategija) 1.65535sec
+Failo generavimas uztruko 6.06982sec
 
-List skaitymas ir rušiavimas užtruko(2 strategija) 4.918sec
-List išvedimas užtruko(2 strategija) 1.81334sec
+Vector rusiavimas uztruko(2 strategija) 2.48271sec
+Vector isvedimas uztruko(2 strategija) 2.43356sec
 
-Deque skaitymas ir rušiavimas užtruko(2 strategija) 5.32219sec
-Deque išvedimas užtruko(2 strategija) 1.76306sec
+List rusiavimas uztruko(2 strategija) 2.20417sec
+List isvedimas uztruko(2 strategija) 2.634sec
 
-Vector skaitymas ir rušiavimas užtruko(1 strategija) 5.40202sec
-Vector išvedimas užtruko(1 strategija) 2.38214sec
+Deque rusiavimas uztruko(2 strategija) 2.29506sec
+Deque isvedimas uztruko(2 strategija) 2.90855sec
 
-List skaitymas ir rušiavimas užtruko(1 strategija) 4.96394sec
-List išvedimas užtruko 2.49297sec
+Vector rusiavimas uztruko(1 strategija) 2.41303sec
+Vector isvedimas uztruko(1 strategija) 2.80808sec
 
-Deque skaitymas ir rušiavimas užtruko(1 strategija) 5.15912sec
-Deque išvedimas užtruko(1 strategija) 2.51084sec
+List rusiavimas uztruko(1 strategija) 2.50176sec
+List isvedimas uztruko(1 strategija) 2.4293sec
+
+Deque rusiavimas uztruko(1 strategija) 1.87861sec
+Deque isvedimas uztruko(1 strategija) 3.00293sec
+
+Vector rusiavimas uztruko(su stable_partition) 0.437255sec
 ```
+Galima matyti, jog antra strategija, nors ir ne labai žymiai, bet yra greitesnė už pirmą strategiją.
+Duomenų konteinerių tipuose greičiausias yra list tipo konteineris.
+Naudojant stable_partition algoritmą vektoriaus greitis abai žymiai išauga ir tuomet stipriai lenkia kito tipo konteinerius.

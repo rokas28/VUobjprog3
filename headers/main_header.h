@@ -12,6 +12,7 @@
 #include <chrono>
 #include <list>
 #include <deque>
+#include <numeric>
 
 using std::string;
 using std::cin;
