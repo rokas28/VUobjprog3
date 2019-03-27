@@ -13,7 +13,18 @@ Norint paleisti programą, jums reikia parsisiųsti norimą versiją ir paleisti
 - `README.md` failas.
 - Galimybė įvesti studentų duomenis ranka, arba juos generuoti atsitiktine tvarka.
 
-Šioje versijoje yra nemažai bug'ų, kurie bus sutvarkyti kitose versijose.
+Šioje versijoje yra nemažai bug'ų, kurie bus sutvarkyti kitose versijose.  
+  
+Naudojimosi instrukcija:
+- Jei norite pridėti studentą spauskite 1.
+- Įveskite studento vardą.
+- Įveskite studento pavardę.
+- Jei norite įvseti studento egzamino pažymį ranka, spauskite 1, jei norite jį atsitiktinai sugeneruoti, spauskite 0.
+- Įveskite egzamino rezultatą (jei paspaudėte 0).
+- Jei norite įvseti studento namų darbų pažymius ranka, spauskite 1, jei norite juos atsitiktinai sugeneruoti, spauskite 0.
+- Įveskite namų darbų rezultatus, kai visi namu darbu rezultatai bus suvesti, spauskite 0 (jei paspaudėte 1).
+- Iveskite kiek namų darbų pažymių norite sugeneruoti (jei paspaudėte 0).
+- Jei norite pridėti dar vieną studentą spauskite 1, jei ne 0.
 
 ## [V0.2](https://github.com/rokas28/VUobjprog2/releases/tag/v0.2) (2019-02-20)
 
