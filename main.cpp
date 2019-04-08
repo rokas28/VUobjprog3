@@ -11,7 +11,7 @@ int main() {
 
     int ilgVar = 0;
     int ilgPav = 0;
-    static const int N = 100;
+    static const int N = 100000;
 
     start_c(start);
     fileGenerate(N);

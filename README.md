@@ -273,3 +273,34 @@ Vector rusiavimas uztruko(su stable_partition) 0.437255sec
 Galima matyti, jog antra strategija, nors ir ne labai žymiai, bet yra greitesnė už pirmą strategiją.
 Duomenų konteinerių tipuose greičiausias yra list tipo konteineris.
 Naudojant `stable_partition` algoritmą vektoriaus greitis abai žymiai išauga ir tuomet stipriai lenkia kito tipo konteinerius.
+
+## [v1.1] (2019-04-08)
+
+### Koreguota:
+- main.cpp išimta list ir deque konteinerių spartos matavimai.
+- Išimtos nenaudojamos funkcijos.
+- Studentai pakeisti iš `struct` į `class`.
+- Pridėtos class konstruktorius, `set` ir `get` reikiamų duomenų funkcijos.
+
+**Struct ir Class palyginimas:**
+
+10000 studentų `struct` tipo:
+```
+
+```
+100000 studentų `struct` tipo:
+```
+
+```
+10000 studentų `Class` tipo:
+```
+Failo generavimas uztruko 0.607438sec
+Vector rusiavimas uztruko 0.0321473sec
+Vector isvedimas uztruko 0.348387sec
+```
+100000 studentų `Class` tipo:
+```
+Failo generavimas uztruko 4.15574sec
+Vector rusiavimas uztruko 0.35197sec
+Vector isvedimas uztruko 3.49539sec
+```

@@ -4,4 +4,4 @@ project(untitled)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "../build")
 
-add_executable(untitled headers/main_header.h headers/studentas.h main.cpp functions/functions.cpp functions/studentas.cpp headers/studentas.h)
+add_executable(untitled headers/main_header.h headers/studentas.h main.cpp functions/studentas.cpp)
