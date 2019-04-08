@@ -2,7 +2,7 @@
 // Created by HP on 2019-03-04.
 //
 #include "../headers/main_header.h"
-#include "../headers/struct_header.h"
+#include "../headers/studentas.h"
 
 void varTikrinimas(std::vector<studentas>& stud, int y){
     cout << "Iveskite studento varda " << endl;

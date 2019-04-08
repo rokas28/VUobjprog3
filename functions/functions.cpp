@@ -1,19 +1,6 @@
 #include "../headers/main_header.h"
-#include "../headers/struct_header.h"
+#include "../headers/studentas.h"
 
-    double mediana(std::vector<studentas> stud, int x, int y){
-        double med;
-        sort(stud[y].nd.begin(), stud[y].nd.end());
-        if (y % 2 == 0)
-        {
-            med =  (stud[y].nd[x / 2 - 1] + stud[y].nd[x / 2]) / 2.0;
-        }
-        else
-        {
-            med = stud[y].nd[x / 2];
-        }
-        return med;
-    };
 
     bool netinkamasPav(const string a){
         for (char i : a) {
@@ -22,35 +9,29 @@
         return true;
     }
 
-    void ndGen(std::vector<studentas>& stud, int x, int y){
+    void ndGen(std::vector<Studentas>& stud, int x, int y){
         std::random_device rd;
         std::mt19937 gen(rd());
         std::uniform_int_distribution<int> random(1, 10);
         int a;
         for(int j = 0; j < x; j++){
             a=random(gen);
-            stud[y].nd.push_back(a);
+            stud[y].set_mark(a);
         }
     }
 
-    void egGen(std::vector<studentas>& stud, int y){
+    void egGen(std::vector<Studentas>& stud, int y){
         std::random_device rd;
         std::mt19937 gen(rd());
         std::uniform_int_distribution<int> random(1, 10);
-        stud[y].egzaminas = random(gen);
+        stud[y].set_exam(random(gen));
     }
 
-    double ndSum(std::vector<studentas> stud, int x, int y){
-        double sum=0;
-        for(int z = 0; z < x ; z++) {
-            sum +=  stud[y].nd[z];
-        }
-        return sum;
-    }
 
-    void galutinis(std::vector<studentas>& stud, int x, int y){
-        stud[y].vidGalutinis =  0.4 * ndSum(stud,x,y)/x + 0.6 * stud[y].egzaminas;
-        stud[y].medGalutinis =  0.4 * mediana(stud,x,y) + 0.6 * stud[y].egzaminas;
+
+    void galutinis(std::vector<Studentas>& stud, int x, int y){
+        stud[y].vidGalutinis =  0.4 * stud[y].ndSum(x)/x + 0.6 * stud[y].get_exam();
+        stud[y].medGalutinis =  0.4 * stud[y].mediana(x,y) + 0.6 * stud[y].get_exam();
     }
 
     void stringTikrinimas (std::ifstream &df, string a, bool &fail, int eil){
@@ -62,12 +43,12 @@
         }
     }
 
-    void nd(std::ifstream &df,std::vector<studentas> &stud, int x, int y, bool &fail, int eil){
+    void nd(std::ifstream &df,std::vector<Studentas> &stud, int x, int y, bool &fail, int eil){
         int q=0;
         for(int j = 0; j < x; j++){
             df >> q;
             if(!df.fail() && q > 0 && q <= 10){
-                stud[y].nd.emplace_back(q);
+                stud[y].set_mark(q);
             }
             else {
                 df.clear();
@@ -79,11 +60,11 @@
         }
     }
 
-    void egz(std::ifstream &df,std::vector<studentas> &stud, int y, bool &fail, int eil){
+    void egz(std::ifstream &df,std::vector<Studentas> &stud, int y, bool &fail, int eil){
         int q=0;
         df >> q;
         if(!df.fail() && q > 0 && q <= 10){
-            stud[y].egzaminas = q;
+            stud[y].set_exam(q);
         }
         else {
             df.clear();
@@ -127,33 +108,37 @@
         gf.close();
     }
 
-    void failoSkaitymas(std::vector<studentas> &stud, int &ilgVar, int &ilgPav, int N){
+    void failoSkaitymas(std::vector<Studentas> &stud, int &ilgVar, int &ilgPav, int N){
         std::ifstream df (data);
         if (!df) throw "Duomenu failas nerastas";
         stud.reserve(N);
         int i=0;
         int eil=0;
         int n = ndSk(df);
-        stud.emplace_back(studentas());
+        stud.emplace_back(Studentas());
+        string name, lastname;
+        int exam;
         while(true) {
-
             if (df.eof() == 1) break;
             eil++;
-            df >> stud[i].vardas >> stud[i].pavarde;
-            if (stud[i].vardas.length() > ilgVar) ilgVar = stud[i].vardas.length();
-            if (stud[i].pavarde.length() > ilgPav) ilgPav = stud[i].pavarde.length();
+            df >> name >> lastname;
+            stud[i].set_name(name);
+            stud[i].set_lastname(lastname);
+            if (stud[i].get_name().length() > ilgVar) ilgVar = stud[i].get_name().length();
+            if (stud[i].get_lastname().length() > ilgPav) ilgPav = stud[i].get_lastname().length();
             int q;
             int sum=0;
             for(int u=0;u<6;u++){
                 df >> q;
-                stud[i].nd.emplace_back(q);
+                stud[i].set_mark(q);
                 sum = sum + q;
             }
-            df >> stud[i].egzaminas;
-            stud[i].vidGalutinis =  0.4 * sum/n + 0.6 * stud[i].egzaminas;
+            df >> exam;
+            stud[i].set_exam(exam);
+            stud[i].vidGalutinis =  0.4 * sum/n + 0.6 * stud[i].get_exam();
             if (df.eof() == 1) break;
             i++;
-            stud.emplace_back(studentas());
+            stud.emplace_back(Studentas());
         }
 
         df.seekg(0);
@@ -171,13 +156,13 @@
         });
     };*/
 
-    void rusiavimas(std::vector<studentas>& stud) {
-        sort(stud.begin(), stud.end(), [](const studentas &lhs, const studentas &rhs) {
+    void rusiavimas(std::vector<Studentas>& stud) {
+        sort(stud.begin(), stud.end(), [](const Studentas &lhs, const Studentas &rhs) {
             return ( lhs.vidGalutinis > rhs.vidGalutinis );
         });
     };
 
-    void skirstymas(std::vector<studentas>& stud, std::vector<studentas>& vargsiukai, int x){
+    void skirstymas(std::vector<Studentas>& stud, std::vector<Studentas>& vargsiukai, int x){
         rusiavimas(stud);
         int i = x;
         int k =0;
@@ -189,7 +174,7 @@
         stud.erase (stud.end()-k, stud.end());
     }
 
-    void skirstymas2(std::vector<studentas>& stud, std::vector<studentas>& vargsiukai, std::vector<studentas>& galvociai, int x){
+    void skirstymas2(std::vector<Studentas>& stud, std::vector<Studentas>& vargsiukai, std::vector<Studentas>& galvociai, int x){
         rusiavimas(stud);
         int i = x;
         int k =0;
@@ -202,19 +187,19 @@
     }
 
 
-    bool negavoSkolos(const studentas& s){
+    bool negavoSkolos(const Studentas& s){
         return s.vidGalutinis > 5;
     }
 
-    std::vector<studentas> vargsiukai(std::vector<studentas>& stud) {
-        std::vector<studentas>::iterator it =
+    std::vector<Studentas> vargsiukai(std::vector<Studentas>& stud) {
+        std::vector<Studentas>::iterator it =
                 stable_partition(stud.begin(), stud.end(), negavoSkolos);
-        std::vector<studentas> minksti(it, stud.end());
+        std::vector<Studentas> minksti(it, stud.end());
         stud.erase(it, stud.end());
         return minksti;
     }
 
-    void isvedimas( std::vector<studentas> stud, std::vector<studentas> vargsiukai, int ilgVar, int ilgPav){
+    void isvedimas( std::vector<Studentas> stud, std::vector<Studentas> vargsiukai, int ilgVar, int ilgPav){
         //rikiavimas(stud);
         std::ofstream gs ("galvociai.txt");
         std::ofstream bs ("vargsiukai.txt");
@@ -223,7 +208,7 @@
         gs << std::setw(ilgPav + 3) << "Pavarde" << std::setw(10) << "Galutiis(vid.)   "  << endl;
         for(int w=0;w<(ilgVar+ilgPav+6+14);w++) gs << "-";gs <<endl;
         for (auto &i : stud) {
-            gs << std::left <<  std::setw(ilgVar+3) << i.vardas << std::setw(ilgPav+3) << i.pavarde;
+            gs << std::left <<  std::setw(ilgVar+3) << i.get_name() << std::setw(ilgPav+3) << i.get_lastname();
             gs << std::setw(17) << std::fixed << std::setprecision(2) << i.vidGalutinis << endl;
         }
         gs.close();
@@ -231,7 +216,7 @@
         bs << std::setw(ilgPav + 3) << "Pavarde" << std::setw(10) << "Galutiis(vid.)   " << endl;
         for(int w=0;w<(ilgVar+ilgPav+6+14);w++) bs << "-";bs <<endl;
         for (auto &i : vargsiukai) {
-            bs << std::left <<  std::setw(ilgVar+3) << i.vardas << std::setw(ilgPav+3) << i.pavarde;
+            bs << std::left <<  std::setw(ilgVar+3) << i.get_name() << std::setw(ilgPav+3) << i.get_lastname();
             bs << std::setw(17) << std::fixed << std::setprecision(2) << i.vidGalutinis << endl;
         }
     bs.close();

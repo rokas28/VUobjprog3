@@ -1,5 +1,5 @@
 #include "../headers/main_header.h"
-#include "../headers/struct_header.h"
+#include "../headers/studentas.h"
 #include "../headers/deque_header.h"
 
 void failoSkaitymas(std::deque<studentas> &stud, int &ilgVar, int &ilgPav){
