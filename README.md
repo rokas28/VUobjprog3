@@ -286,11 +286,15 @@ Naudojant `stable_partition` algoritmą vektoriaus greitis abai žymiai išauga 
 
 10000 studentų `struct` tipo:
 ```
-
+Failo generavimas uztruko 0.944738sec
+Vector rusiavimas uztruko 0.0638831sec
+Vector isvedimas uztruko 0.287301sec
 ```
 100000 studentų `struct` tipo:
 ```
-
+Failo generavimas uztruko 6.50524sec
+Vector rusiavimas uztruko 0.748016sec
+Vector isvedimas uztruko 3.65606sec
 ```
 10000 studentų `Class` tipo:
 ```
