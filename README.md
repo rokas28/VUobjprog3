@@ -308,3 +308,4 @@ Failo generavimas uztruko 4.15574sec
 Vector rusiavimas uztruko 0.35197sec
 Vector isvedimas uztruko 3.49539sec
 ```
+Programa su studentų `Class` tipu, galima matyti, veiki šiek tiek greičiau, nei su studentų `struct` tipu.
