@@ -274,7 +274,7 @@ Galima matyti, jog antra strategija, nors ir ne labai žymiai, bet yra greitesn�
 Duomenų konteinerių tipuose greičiausias yra list tipo konteineris.
 Naudojant `stable_partition` algoritmą vektoriaus greitis abai žymiai išauga ir tuomet stipriai lenkia kito tipo konteinerius.
 
-## [v1.1] (2019-04-08)
+## [v1.1](https://github.com/rokas28/VUobjprog3/releases/tag/v1.1) (2019-04-08)
 
 ### Pridėta:
 - Studento klasės funkcijos `studentas.cpp`.
