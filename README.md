@@ -333,4 +333,3 @@ Failo generavimas uztruko 3.90214sec
 Vector rusiavimas uztruko 0.270159sec
 Vector isvedimas uztruko 2.77907sec
 ```
-Matavimų rezultatai skiriasi, nuo senesnių laiko matavimų, nes buvo naudojamas kitas kompiliatorius.
