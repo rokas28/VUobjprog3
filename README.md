@@ -276,11 +276,14 @@ Naudojant `stable_partition` algoritmą vektoriaus greitis abai žymiai išauga 
 
 ## [v1.1] (2019-04-08)
 
+### Pridėta:
+- Studento klasės funkcijos `studentas.cpp`.
+- Class konstruktorius, `set` ir `get` reikiamų duomenų funkcijos.
+
 ### Koreguota:
 - main.cpp išimta list ir deque konteinerių spartos matavimai.
 - Išimtos nenaudojamos funkcijos.
 - Studentai pakeisti iš `struct` į `class`.
-- Pridėtos class konstruktorius, `set` ir `get` reikiamų duomenų funkcijos.
 
 **Struct ir Class palyginimas:**
 
@@ -308,4 +311,26 @@ Failo generavimas uztruko 4.15574sec
 Vector rusiavimas uztruko 0.35197sec
 Vector isvedimas uztruko 3.49539sec
 ```
-Programa su studentų `Class` tipu, galima matyti, veiki šiek tiek greičiau, nei su studentų `struct` tipu.
+Programa su studentų `Class` tipu, galima matyti, veiki šiek tiek greičiau, nei su studentų `struct` tipu.  
+
+**Optimizavimo flag'ų palyginimas:**  
+
+100000 studentų, `O1` tipo flag'as:
+```
+Failo generavimas uztruko 4.27965sec
+Vector rusiavimas uztruko 0.326014sec
+Vector isvedimas uztruko 3.13245sec
+```
+100000 studentų, `O2` tipo flag'as:
+```
+Failo generavimas uztruko 3.73657sec
+Vector rusiavimas uztruko 0.279388sec
+Vector isvedimas uztruko 2.96582sec
+```
+100000 studentų, `O3` tipo flag'as:
+```
+Failo generavimas uztruko 3.90214sec
+Vector rusiavimas uztruko 0.270159sec
+Vector isvedimas uztruko 2.77907sec
+```
+Matavimų rezultatai skiriasi, nuo senesnių laiko matavimų, nes buvo naudojamas kitas kompiliatorius.
