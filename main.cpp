@@ -5,7 +5,6 @@ int main() {
 
     std::vector<Studentas> stud;
     std::vector<Studentas> vargsiukaii;
-
     std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
     std::chrono::duration<float> duration;
 

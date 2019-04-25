@@ -131,7 +131,7 @@ void isvedimas( std::vector<Studentas> stud, std::vector<Studentas> vargsiukai, 
     ilgPav = 14;
 
     gs << std::left << std::setw(ilgVar + 3) << "vardas";
-    gs << std::setw(ilgPav + 3) << "Pavarde" << std::setw(10) << "Galutiis(vid.)   "  << endl;
+    gs << std::setw(ilgPav + 3) << "Pavarde" << std::setw(10) << "Galutiis(vid.)   " << endl;
     for(int w=0;w<(ilgVar+ilgPav+6+14);w++) gs << "-";gs <<endl;
     for (auto &i : stud) {
         /*gs << std::left <<  std::setw(ilgVar+3) << i.get_name() << std::setw(ilgPav+3) << i.get_lastname();

@@ -31,11 +31,11 @@ public:
         return out;
     };
     friend std::istream &operator >> (std::istream & in, Studentas & a) {
-        cout << " Iveskite varda ";
+        cout << " Iveskite varda " << endl;
         in >> a.vardas;
-        cout << endl << "Iveskite pavarde ";
+        cout << "Iveskite pavarde " << endl;
         in >> a.pavarde;
-        cout << endl << "Iveskite namu darbu skaiciu ";
+        cout << "Iveskite namu darbu skaiciu ";
         int n;
         in >> n;
         int q;
@@ -75,7 +75,6 @@ public:
                 continue;
             }
         }
-        cout << endl;
         double galutinis;
         galutinis =  0.4 * sum/n + 0.6 * a.get_exam();
         a.set_vidGalutinis(galutinis);
