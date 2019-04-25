@@ -31,5 +31,18 @@ int main() {
     cout << "Vector isvedimas uztruko " << time3.count() << "sec" << endl;
     stud.resize(1);
 
+    Studentas a;
+    Studentas b;
+    cin >> a;
+    cin >> b;
+    cout << a;
+    cout << b;
+    if(a == b) cout << a.get_name() << " turi vienoda bala kaip ir " << b.get_name() << endl;
+    if(a != b) cout << a.get_name() << " turi kitoki bala nei " << b.get_name() << endl;
+    if(a > b) cout << a.get_name() << " turi didesni bala nei " << b.get_name() << endl;
+    else if (b > a) cout << b.get_name() << " turi didesni bala nei " << a.get_name() << endl;
+    if(b < a) cout << b.get_name() << " turi mazesni bala nei " << a.get_name() << endl;
+    else if (a < b) cout << a.get_name() << " turi mazesni bala nei " << b.get_name() << endl;
+
     return 0;
 }

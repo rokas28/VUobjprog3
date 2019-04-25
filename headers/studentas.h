@@ -7,20 +7,56 @@ class Studentas {
 private:
     string vardas, pavarde;
     int egzaminas;
+    double vidGalutinis;
     std::vector<int > nd;
 public:
-    Studentas() : egzaminas(0) { };
-    double vidGalutinis = 0;
+    Studentas() : egzaminas(0), vidGalutinis(0){ };
+    void set_vidGalutinis (double &a) { vidGalutinis = a; };
+    double get_vidGalutinis() const { return vidGalutinis; };
     double medGalutinis = 0;
     void set_name(string &a){ vardas = a; };
     void set_lastname (string &a) {pavarde = a; };
-    string get_name() {return vardas; };
-    string get_lastname() {return pavarde; };
+    string get_name() const {return vardas; };
+    string get_lastname() const {return pavarde; };
     void set_exam (int a);
     int get_exam() {return egzaminas; };
     void set_mark(int a);
     double ndSum(int x);
     double mediana(int x, int y);
+    friend bool operator== (const Studentas &a, const Studentas &b) { return a.get_vidGalutinis() == b.get_vidGalutinis(); };
+    friend bool operator!= (const Studentas &a, const Studentas &b) { return a.get_vidGalutinis() != b.get_vidGalutinis(); };
+    friend std::ostream& operator << (std::ostream &out, const Studentas a) {
+        out << std::left <<  std::setw(13+3) << a.get_name() << std::setw(14+3) << a.get_lastname();
+        out << std::setw(17) << std::fixed << std::setprecision(2) << a.get_vidGalutinis() << endl;
+        return out;
+    };
+    friend std::istream &operator >> (std::istream & in, Studentas & a) {
+        cout << " Iveskite varda ";
+        in >> a.vardas;
+        cout << endl << "Iveskite pavarde ";
+        in >> a.pavarde;
+        cout << endl << "Iveskite namu darbu skaiciu ";
+        int n;
+        in >> n;
+        int q;
+        int sum = 0;
+        for(int u=0;u<n;u++){
+            cout << " Iveskite namu darbu pazymi ";
+            in >> q;
+            sum = sum + q;
+            cout << endl;
+            a.set_mark(q);
+        }
+        cout << endl << "Iveskite egzamino rezultata ";
+        in >> a.egzaminas;
+        cout << endl;
+        double galutinis;
+        galutinis =  0.4 * sum/n + 0.6 * a.get_exam();
+        a.set_vidGalutinis(galutinis);
+        return in;
+    };
+    friend bool operator > (const Studentas &a, const Studentas &b) { return a.get_vidGalutinis() > b.get_vidGalutinis(); };
+    friend bool operator < (const Studentas &a, const Studentas &b) { return a.get_vidGalutinis() < b.get_vidGalutinis(); };
 
 };
 

@@ -90,7 +90,9 @@ void failoSkaitymas(std::vector<Studentas> &stud, int &ilgVar, int &ilgPav, int 
         }
         df >> exam;
         stud[i].set_exam(exam);
-        stud[i].vidGalutinis =  0.4 * sum/n + 0.6 * stud[i].get_exam();
+        double galutinis;
+        galutinis =  0.4 * sum/n + 0.6 * stud[i].get_exam();
+        stud[i].set_vidGalutinis(galutinis);
         if (df.eof() == 1) break;
         i++;
         stud.emplace_back(Studentas());
@@ -103,13 +105,13 @@ void failoSkaitymas(std::vector<Studentas> &stud, int &ilgVar, int &ilgPav, int 
 
 void rusiavimas(std::vector<Studentas>& stud) {
     sort(stud.begin(), stud.end(), [](const Studentas &lhs, const Studentas &rhs) {
-        return (lhs.vidGalutinis > rhs.vidGalutinis);
+        return (lhs.get_vidGalutinis() > rhs.get_vidGalutinis());
     });
 }
 
 
 bool negavoSkolos(const Studentas& s){
-    return s.vidGalutinis > 5;
+    return s.get_vidGalutinis() > 4.99999999999;
 }
 
 std::vector<Studentas> vargsiukai(std::vector<Studentas>& stud) {
@@ -125,21 +127,25 @@ void isvedimas( std::vector<Studentas> stud, std::vector<Studentas> vargsiukai, 
     rusiavimas(vargsiukai);
     std::ofstream gs ("galvociai.txt");
     std::ofstream bs ("vargsiukai.txt");
+    ilgVar = 13;
+    ilgPav = 14;
 
     gs << std::left << std::setw(ilgVar + 3) << "vardas";
     gs << std::setw(ilgPav + 3) << "Pavarde" << std::setw(10) << "Galutiis(vid.)   "  << endl;
     for(int w=0;w<(ilgVar+ilgPav+6+14);w++) gs << "-";gs <<endl;
     for (auto &i : stud) {
-        gs << std::left <<  std::setw(ilgVar+3) << i.get_name() << std::setw(ilgPav+3) << i.get_lastname();
-        gs << std::setw(17) << std::fixed << std::setprecision(2) << i.vidGalutinis << endl;
+        /*gs << std::left <<  std::setw(ilgVar+3) << i.get_name() << std::setw(ilgPav+3) << i.get_lastname();
+        gs << std::setw(17) << std::fixed << std::setprecision(2) << i.get_vidGalutinis() << endl;*/
+        gs << i;
     }
     gs.close();
     bs << std::left << std::setw(ilgVar + 3) << "vardas";
     bs << std::setw(ilgPav + 3) << "Pavarde" << std::setw(10) << "Galutiis(vid.)   " << endl;
     for(int w=0;w<(ilgVar+ilgPav+6+14);w++) bs << "-";bs <<endl;
     for (auto &i : vargsiukai) {
-        bs << std::left <<  std::setw(ilgVar+3) << i.get_name() << std::setw(ilgPav+3) << i.get_lastname();
-        bs << std::setw(17) << std::fixed << std::setprecision(2) << i.vidGalutinis << endl;
+       /*bs << std::left <<  std::setw(ilgVar+3) << i.get_name() << std::setw(ilgPav+3) << i.get_lastname();
+        bs << std::setw(17) << std::fixed << std::setprecision(2) << i.get_vidGalutinis() << endl;*/
+        bs << i;
     }
     bs.close();
 }
