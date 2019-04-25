@@ -10,7 +10,7 @@ private:
     double vidGalutinis;
     std::vector<int > nd;
 public:
-    Studentas() : egzaminas(0), vidGalutinis(0){ };
+    Studentas() : vardas(" "), pavarde(" "), egzaminas(0), vidGalutinis(0){ };
     void set_vidGalutinis (double &a) { vidGalutinis = a; };
     double get_vidGalutinis() const { return vidGalutinis; };
     double medGalutinis = 0;
@@ -41,14 +41,40 @@ public:
         int q;
         int sum = 0;
         for(int u=0;u<n;u++){
-            cout << " Iveskite namu darbu pazymi ";
+            cout << "Iveskite namu darbu pazymi " << endl;
             in >> q;
-            sum = sum + q;
-            cout << endl;
-            a.set_mark(q);
+            if(!in.fail() && q >= 0 && q <= 10){
+                if(q!=0) {
+                    a.set_mark(q);
+                    sum = sum + q;
+                }
+            }
+            else {
+                cout << "Netinkamas pazymys, iveskite kita" << endl;
+                in.clear();
+                in.ignore(256, '\n');
+                u--;
+                continue;
+
+            }
         }
-        cout << endl << "Iveskite egzamino rezultata ";
-        in >> a.egzaminas;
+        while(true){
+            int eg = 0;
+            cout << "Iveskite egzamino rezultata" << endl;
+            in >> eg;
+            if( !in.fail() && eg>= 0 && eg <= 10){
+                if(eg!=0) {
+                    a.egzaminas = eg;
+                    break;
+                }
+            }
+            else {
+                cout << "Netinkamas pazymys, iveskite kita" << endl;
+                in.clear();
+                in.ignore(256, '\n');
+                continue;
+            }
+        }
         cout << endl;
         double galutinis;
         galutinis =  0.4 * sum/n + 0.6 * a.get_exam();
@@ -57,7 +83,6 @@ public:
     };
     friend bool operator > (const Studentas &a, const Studentas &b) { return a.get_vidGalutinis() > b.get_vidGalutinis(); };
     friend bool operator < (const Studentas &a, const Studentas &b) { return a.get_vidGalutinis() < b.get_vidGalutinis(); };
-
 };
 
 int ndSk(std::ifstream &df);
