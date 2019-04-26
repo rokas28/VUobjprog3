@@ -333,3 +333,11 @@ Failo generavimas uztruko 3.90214sec
 Vector rusiavimas uztruko 0.270159sec
 Vector isvedimas uztruko 2.77907sec
 ```
+## [v1.2](https://github.com/rokas28/VUobjprog3/releases/tag/v1.2) (2019-04-26)
+
+### Pridėta:
+- Pridėti `== != << >> < > copy` operatoriai.
+
+### Koreguota:
+- Kur yra reikalingi, programoje naudojami nauji operatoriai.
+- Studenato galutinis balas perkeltas iš public į private.
