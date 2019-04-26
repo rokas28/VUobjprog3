@@ -82,6 +82,14 @@ public:
     };
     friend bool operator > (const Studentas &a, const Studentas &b) { return a.get_vidGalutinis() > b.get_vidGalutinis(); };
     friend bool operator < (const Studentas &a, const Studentas &b) { return a.get_vidGalutinis() < b.get_vidGalutinis(); };
+
+    Studentas& operator= (const Studentas &a) {
+        if(a == *this) return *this;
+        vardas = a.get_name();
+        pavarde = a.get_lastname();
+        vidGalutinis = a.get_vidGalutinis();
+        return *this;
+    };
 };
 
 int ndSk(std::ifstream &df);

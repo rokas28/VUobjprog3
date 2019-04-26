@@ -33,6 +33,9 @@ int main() {
     Studentas a;
     Studentas b;
     cin >> a;
+    b = a;
+    cout << a;
+    cout << b;
     cin >> b;
     cout << a;
     cout << b;
