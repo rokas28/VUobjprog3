@@ -1,5 +1,6 @@
 #include "headers/main_header.h"
 #include "headers/studentas.h"
+#include "headers/zmogus.h"
 
 int main() {
 

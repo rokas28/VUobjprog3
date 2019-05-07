@@ -2,25 +2,25 @@
 #define UNTITLED_STUDENTAS_H
 
 #include "main_header.h"
+#include "zmogus.h"
 
-class Studentas {
+class Studentas : public Zmogus {
 private:
-    string vardas, pavarde;
     int egzaminas;
     double vidGalutinis;
     std::vector<int > nd;
 public:
-    Studentas() : vardas(" "), pavarde(" "), egzaminas(0), vidGalutinis(0){ };
+    Studentas(string a, string b) : Zmogus(a,b){};
+    Studentas(){};
     void set_vidGalutinis (double &a) { vidGalutinis = a; };
     double get_vidGalutinis() const { return vidGalutinis; };
     double medGalutinis = 0;
-    void set_name(string &a){ vardas = a; };
-    void set_lastname (string &a) {pavarde = a; };
-    string get_name() const {return vardas; };
-    string get_lastname() const {return pavarde; };
     void set_exam (int a);
     int get_exam() {return egzaminas; };
     void set_mark(int a);
+    void tipas() {
+      cout << "Tai yra studentas" << endl;
+    };
     double ndSum(int x);
     double mediana(int x, int y);
     friend bool operator== (const Studentas &a, const Studentas &b) { return a.get_vidGalutinis() == b.get_vidGalutinis(); };
@@ -31,10 +31,13 @@ public:
         return out;
     };
     friend std::istream &operator >> (std::istream & in, Studentas & a) {
+        string b;
         cout << " Iveskite varda " << endl;
-        in >> a.vardas;
+        in >> b;
+        a.set_name(b);
         cout << "Iveskite pavarde " << endl;
-        in >> a.pavarde;
+        in >> b;
+        a.set_lastname(b);
         cout << "Iveskite namu darbu skaiciu ";
         int n;
         in >> n;
@@ -85,8 +88,11 @@ public:
 
     Studentas& operator= (const Studentas &a) {
         if(a == *this) return *this;
-        vardas = a.get_name();
-        pavarde = a.get_lastname();
+        string b;
+        b = a.get_name();
+        set_name(b);
+        b = a.get_lastname();
+        set_lastname(b);
         vidGalutinis = a.get_vidGalutinis();
         return *this;
     };
