@@ -341,3 +341,12 @@ Vector isvedimas uztruko 2.77907sec
 ### Koreguota:
 - Kur yra reikalingi, programoje naudojami nauji operatoriai.
 - Studenato galutinis balas perkeltas iš public į private.
+
+## [v1.5](https://github.com/rokas28/VUobjprog3/releases/tag/v1.5) (2019-04-26)
+
+### Pridėta:
+- Base class Zmogus `zmogus.h`.
+- Base class yra abstrakčioji klasė, kurios objektų negalima sukurti.
+
+### Koreguota:
+- Studentas class pakeista į derived.
