@@ -11,9 +11,7 @@ public:
     void set_lastname (string &a) {pavarde = a; };
     string get_name() const {return vardas; };
     string get_lastname() const {return pavarde; };
-    virtual void tipas() {
-      cout << "Tai yra zmogus" << endl;
-    };
+    virtual void tipas() = 0;
     Zmogus(string a, string b) {
         vardas = a;
         pavarde = b;
