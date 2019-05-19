@@ -350,3 +350,12 @@ Vector isvedimas uztruko 2.77907sec
 
 ### Koreguota:
 - Studentas class pakeista į derived.
+
+## [v2.0](https://github.com/rokas28/VUobjprog3/releases/tag/v2.0) (2019-05-19)
+
+### Pridėta:
+- Doxygen dokumentacija.
+- Realizuotas `Google Test` framework'as, sukurti reikalingi CMakeLists.txt.
+
+### Koreguota:
+- `functions` ir `headers` perkelti į `code` aplanką.
